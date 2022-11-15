@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Oleg/Documents/GitHub/practicFlutter1/praktika2/windows/flutter
+# Install script for directory: D:/flutterprojects/praktika2/windows/flutter
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

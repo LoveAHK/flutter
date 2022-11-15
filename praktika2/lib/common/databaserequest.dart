@@ -10,33 +10,30 @@ abstract class DataBaseRequest{
   static const String tableRole = 'Role'; //
   static const String tableUsers = 'Users'; //
   static const String tableProvider = 'Provider'; //
-  static const String tableTypeFurniture = "Type_Furniture"; //
-  static const String tableFurniture="Furniture"; //
-  static const String tableStock="Stock"; //
+  static const String tableTypeProdukt = "Type_Produkt"; //
+  static const String tableProdukt="Produkt"; //
+  static const String tableSell="Sell"; //
   static const String tableService="Service"; //
-  static const String tableAccessory="Accessory";
   static const String tableMarket="Market";
 
   static const List<String> tableList =[
     tableRole,
     tableUsers,
     tableProvider,
-    tableTypeFurniture,
-    tableFurniture,
-    tableStock,
+    tableTypeProdukt,
+    tableProdukt,
+    tableSell,
     tableService,
-    tableAccessory,
     tableMarket
   ];
     static const List<String> tableCreateList =[
     _createTableService,
     _createTableRole,
     _createTableUsers,
-    _createTableStock,
+    _createTableSell,
     _createTableProvider,
-    _createTableTypeFurniture,
-    _createTableFurniture,
-    _createTableAccessory,
+    _createTableTypeProdukt,
+    _createTableProdukt,
     _createTabletableMarket
 
   ];
@@ -50,21 +47,18 @@ abstract class DataBaseRequest{
   static const String _createTableProvider=
   'CREATE TABLE "$tableProvider"( "id" INTEGER , "name" TEXT NOT NULL UNIQUE, "adres" TEXT NOT NULL, "email" TEXT NOT NULL UNIQUE, PRIMARY KEY("id" AUTOINCREMENT));';
   
-  static const String _createTableStock= 
-  'CREATE TABLE "$tableStock"( "id" INTEGER, "adres" TEXT NOT NULL UNIQUE, PRIMARY KEY("id" AUTOINCREMENT));';
+  static const String _createTableSell= 
+  'CREATE TABLE "$tableSell"( "id" INTEGER, "adres" TEXT NOT NULL UNIQUE, PRIMARY KEY("id" AUTOINCREMENT));';
 
-  static const String _createTableFurniture =
-   'CREATE TABLE "$tableFurniture" ("id" INTEGER,"name" TEXT NOT NULL UNIQUE, "price" REAL NOT NULL, "id_provider" INTEGER, "id_type" INTEGER,PRIMARY KEY("id" AUTOINCREMENT), FOREIGN KEY("id_provider") REFERENCES "$tableProvider"("id"), FOREIGN KEY("id_type") REFERENCES "$tableTypeFurniture"("id"));';
+  static const String _createTableProdukt =
+   'CREATE TABLE "$tableProdukt" ("id" INTEGER,"name" TEXT NOT NULL UNIQUE, "price" REAL NOT NULL, "id_provider" INTEGER, "id_type" INTEGER,PRIMARY KEY("id" AUTOINCREMENT), FOREIGN KEY("id_provider") REFERENCES "$tableProvider"("id"), FOREIGN KEY("id_type") REFERENCES "$tableTypeProdukt"("id"));';
 
    static const String _createTableService =
    'CREATE TABLE "$tableService" ("id" INTEGER,"name" TEXT NOT NULL UNIQUE, "price" REAL NOT NULL, PRIMARY KEY("id" AUTOINCREMENT));';
    
-   static const String _createTableAccessory =
-   'CREATE TABLE "$tableAccessory" ("id" INTEGER,"name" TEXT NOT NULL UNIQUE, "price" REAL NOT NULL, "id_furniture" INTEGER, "id_stock" INTEGER,PRIMARY KEY("id" AUTOINCREMENT), FOREIGN KEY("id_furniture") REFERENCES "$tableFurniture"("id"), FOREIGN KEY("id_stock") REFERENCES "$tableStock"("id"));';
-
-static const String _createTableTypeFurniture =
-   'CREATE TABLE "$tableTypeFurniture" ("id" INTEGER,"name" TEXT NOT NULL UNIQUE,PRIMARY KEY("id" AUTOINCREMENT));';
+static const String _createTableTypeProdukt =
+   'CREATE TABLE "$tableTypeProdukt" ("id" INTEGER,"name" TEXT NOT NULL UNIQUE,PRIMARY KEY("id" AUTOINCREMENT));';
 
 static const String _createTabletableMarket =
-   'CREATE TABLE "$tableMarket" ("id" INTEGER,"adres" TEXT NOT NULL UNIQUE, "id_stock" INTEGER, FOREIGN KEY("id_stock") REFERENCES "$tableStock"("id"),PRIMARY KEY("id" AUTOINCREMENT));';
+   'CREATE TABLE "$tableMarket" ("id" INTEGER,"adres" TEXT NOT NULL UNIQUE, "id_stock" INTEGER, FOREIGN KEY("id_stock") REFERENCES "$tableSell"("id"),PRIMARY KEY("id" AUTOINCREMENT));';
 }
